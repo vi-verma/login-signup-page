@@ -1,11 +1,13 @@
 function Card(props){
 
     return(
-        <div className="card">
-            <div className={props.className || 'card-body'}>
-                {
-                    props.children
-                }
+        <div className={props.className}>
+            <div className="card">
+                <div className='card-body'>
+                    {
+                        props.children
+                    }
+                </div>
             </div>
         </div>
     );

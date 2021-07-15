@@ -1,0 +1,57 @@
+/* .cont{
+    margin: auto;
+    text-align: center;
+} */
+/* input{
+    width: 50%;  
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: rgb(167, 164, 164);
+    display: block;
+} */
+.container_body{
+    text-align: justify;
+}
+.image{
+    height: 6%;
+    width: 12%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 10%;
+}
+.head{
+    font-size: 60px;
+}
+/* .username{
+    background-color: #fff;
+} */
+.card{
+    width:35%;
+}
+.username{
+    font-weight: 500;
+    
+}
+.username label{
+    margin-left: 9%;
+}
+.username input{
+    width: 85%;
+    margin-bottom: 2%;
+    margin: auto;
+}
+.password{
+    font-weight: 500;
+}
+.password label{
+    margin-left: 9%;
+    margin-top: 4%;
+}
+.password input{
+    width: 85%;
+    margin: auto;
+}
+.login_btn{
+    margin-top: 4%;
+    text-align: center;
+}

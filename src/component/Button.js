@@ -3,8 +3,8 @@
  function Button(props){
 
     return(
-        <div>
-            <button className={props.className || 'btn btn-default'}  >
+        <div >
+            <button onClick={props.onClick} type={props.type || "button"} className={props.className || 'btn btn-secondary  '}  >
                 {props.children}
             </button>
         </div>
