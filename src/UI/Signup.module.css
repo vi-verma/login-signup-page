@@ -1,0 +1,19 @@
+.signup_background{
+    background-color: #ebedf0;
+}
+
+.signup_body{
+    margin: auto;
+    border: 2px solid grey;
+    width: 40%;
+    /* background-color: rgba(128, 128, 128, 0.466); */
+}
+.header{
+    height: 11%;
+    background-color: rgb(8, 8, 204);
+}
+.header p{
+    font-size: 3rem;
+    color: white;
+    
+}
