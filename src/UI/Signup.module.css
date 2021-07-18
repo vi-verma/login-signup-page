@@ -4,16 +4,54 @@
 
 .signup_body{
     margin: auto;
-    border: 2px solid grey;
-    width: 40%;
+    /* border: 2px solid grey; */
+    width: 35%;
     /* background-color: rgba(128, 128, 128, 0.466); */
 }
 .header{
     height: 11%;
-    background-color: rgb(8, 8, 204);
+    /* background-color: #1c1e21; */
+    background-color: rgb(8, 8, 158);
+    padding-left: 14%;  
 }
 .header p{
-    font-size: 3rem;
+    font-size: 3.6rem;
     color: white;
-    
+    font-weight: 500;
+    padding-top: 1.5%;
+    /* display: inline; */
+}
+.sub_header{
+    font-size: 3.8rem;
+    font-weight: 500;
+    padding-left: 1%;
+    color: #1c1e21;
+}
+.info{
+    font-size: 1.2rem;
+    color: gray;
+    padding-left: 2%;
+}
+.signup_body div{
+    display: inline-block;
+    margin: 2%;
+}
+/* .fname{
+    display: inline-block;
+} */
+.login_btn{
+    float: right;
+    margin-top: -5.6%;
+    margin-right: 15%;
+    /* padding-bottom: 6%; */
+}
+.button_si{
+    position: inherit;
+}
+.signup_btn{
+    /* margin-left: 28%; */
+    font-size: 1.4rem;
+    font-weight: 600;
+    /* padding-right: 3%;
+    padding-left: 2%;   */
 }

@@ -4,10 +4,12 @@ import Button from '../component/Button';
 import image from '../contents/Amazon_logo.svg';
 import {useReducer} from 'react';
 import { TOKEN_KEY } from '../constants';
+// import Signup from './Signup';
 
+// email
 const userIdReducer = (state, action) => {
     if(action.type === 'USER_ID'){
-        return {value: action.val, isValid: action.val.includes('@.com') || action.val.trim().length > 5}
+        return {value: action.val, isValid: action.val.includes('@') || action.val.trim().length > 5}
     }return {value: '', isValid: true};
 };
 const passwordReducer = (state, action) => {
@@ -42,8 +44,10 @@ const [passwordState, passwordDispatch] = useReducer(passwordReducer, {value: ''
             });
             try{
                 const data = await response.json();
-                localStorage.setItem(TOKEN_KEY, data.token);
-                props.setIsLoggedIn(true)
+                if(data.token){
+                    localStorage.setItem(TOKEN_KEY, data.token);
+                    props.setIsLoggedIn(true)
+                }
                 // console.log(data.token);
                 alert(data.msg)
             }catch(err){
@@ -58,7 +62,15 @@ const [passwordState, passwordDispatch] = useReducer(passwordReducer, {value: ''
     const loginHandeler = () => {
         // console.log(userIdState);
         //console.log(passwordState.value)
-        loginFetch();
+        if(userIdState.isValid === true || passwordState.isValid === true){
+            loginFetch();
+        }else{
+            alert("email or password field shouls not be empty.")
+        };
+    };
+
+    const signupHandeler = () => {
+        props.setSignUp(true);
     };
 
      
@@ -73,18 +85,19 @@ const [passwordState, passwordDispatch] = useReducer(passwordReducer, {value: ''
                         </p>
                         <div className={classes.username}>
                             <label className={'form-label'}>Email</label>
-                            <input onChange={userIdHandeler} className='form-control' type="text" placeholder="Username" />
+                            <input  onChange={userIdHandeler} className={userIdState.isValid ? 'form-control ' : 'form-control '+ classes.invalid} type="text" placeholder="Username" />
                         </div>
                         <div className={classes.password}>
                             <label className='form-label'>Password</label>
-                            <input onChange={passwordHandeler} className='form-control' type='password' placeholder="Password"/>
+                            <input onChange={passwordHandeler} className={passwordState.isValid ? 'form-control' : "form-control " + classes.invalid} type='password' placeholder="Password"/>
                         </div>
                         <div className={classes.login_btn}>
                             <Button onClick={loginHandeler} className={"btn btn-warning col-10"}>Login</Button>
                         </div>
                     </Card>
-                    <div>
-                        <Button >Create your amazon account</Button>
+                    
+                    <div className ={classes.signup}>
+                        <Button className={'btn btn-success ' + classes.signup_btn} onClick={signupHandeler}>Create your amazon account</Button>
                     </div>
                 </div>
             </div>

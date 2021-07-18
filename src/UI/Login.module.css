@@ -58,3 +58,19 @@
     margin-top: 4%;
     text-align: center;
 }
+.invalid{
+    border-color: red;
+}
+.signup{
+    margin-top: 2%;
+    border-color: red;
+    
+}
+.signup_btn{
+    margin-left: 33%;
+    border: 1px solid black;
+    padding: 1%;
+    font-size: 1.6rem;
+    font-weight: 500;
+
+}
