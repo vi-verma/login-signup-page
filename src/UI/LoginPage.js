@@ -20,9 +20,8 @@ const passwordReducer = (state, action) => {
 };
 
 function Login(props){
-
-const [userIdState, userIdDispatch] = useReducer(userIdReducer, {value:'',isValid: true});
-const [passwordState, passwordDispatch] = useReducer(passwordReducer, {value: '', isValid: true});
+    const [userIdState, userIdDispatch] = useReducer(userIdReducer, {value:'',isValid: true});
+    const [passwordState, passwordDispatch] = useReducer(passwordReducer, {value: '', isValid: true});
 
     const userIdHandeler = (event) => {
         // console.log(event.target.value)
@@ -64,9 +63,10 @@ const [passwordState, passwordDispatch] = useReducer(passwordReducer, {value: ''
         //console.log(passwordState.value)
         if(userIdState.isValid === true || passwordState.isValid === true){
             loginFetch();
-        }else{
-            alert("email or password field shouls not be empty.")
-        };
+        }return;
+        // else{
+        //     alert("email or password is invalid")
+        // };
     };
 
     const signupHandeler = () => {
@@ -95,7 +95,6 @@ const [passwordState, passwordDispatch] = useReducer(passwordReducer, {value: ''
                             <Button onClick={loginHandeler} className={"btn btn-warning col-10"}>Login</Button>
                         </div>
                     </Card>
-                    
                     <div className ={classes.signup}>
                         <Button className={'btn btn-success ' + classes.signup_btn} onClick={signupHandeler}>Create your amazon account</Button>
                     </div>
