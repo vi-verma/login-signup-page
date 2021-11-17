@@ -1,0 +1,14 @@
+.main{
+    width: 40%;
+    margin: auto;
+}
+.main input{
+    margin: 6px;
+    font-size: 1.4rem;
+    color: gray;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+ margin: 1%;
+}

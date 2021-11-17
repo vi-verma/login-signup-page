@@ -2,6 +2,7 @@ import Login from "./UI/LoginPage";
 import {useEffect, useState} from 'react';
 import Home from "./UI/Home";
 import Signup from './UI/Signup';
+// import SignupUser from "./UI/SignupRev";
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
   // const [login, setLogin] = useState(false)
 
   useEffect(() => {
-    console.log(localStorage.TOKEN_key)
+    // console.log(localStorage.TOKEN_key)
     if(localStorage.token){
       setIsLoggedIn(true);
       return;
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div>
+      {/* <SignupUser/> */}
       {isLoggedIn ? <Home setIsLoggedIn={setIsLoggedIn}/> :   signUp ?   <Signup setSignUp={setSignUp} /> : <Login setSignUp={setSignUp} setIsLoggedIn={setIsLoggedIn} />} 
      
     </div>

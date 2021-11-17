@@ -1,6 +1,7 @@
-import { useReducer } from 'react';
+import { useReducer, useRef } from 'react';
 import Button from '../component/Button';
 import classes from './Signup.module.css';
+
 
 const userIdReducer = (state, action) => {
     if(action.type === "USER_ID"){
@@ -14,8 +15,8 @@ const  passwordReducer = (state, action) => {
 };
 const fNameReducer = (state, action) =>{
     if(action.type === "FIRST_NAME"){
-        return{value: action.val, isValid: action.val.length > 1};
-    }return {value: '', isValid: true};
+        return{value:action.val, isValid:action.val.length > 1 };
+    }return{value: '', isValid: true};
 };
 const lNameReducer = (state, action) => {
     if(action.type === "LAST_NAME"){
@@ -33,15 +34,16 @@ const stateReducer = (state, action) => {
     }return{value:'', isvalid: true};
 };
 const countryReducer = (state, action) => {
-    if(action.type === "country"){
-        return{value: action.val,isValid: action.val.length > 3};
-    }return{value:'', isvalid: true};
+    if(action.type === "COUNTRY"){
+        return{value: action.val, isValid: action.val.length > 3};
+    }return{value:'', isValid: true};
 };
 const pinReducer = (state, action) => {
     if(action.type === "PIN_CODE"){
         return{value: action.val,isValid: action.val.length === 6};
     }return{value:'', isvalid: true};
 };
+
 
 function Signup(props){
     const [idState, userIdDispatch] = useReducer(userIdReducer, {value:'', isValid: true});
@@ -53,7 +55,15 @@ function Signup(props){
     const [countryState, countryDispatch] = useReducer(countryReducer, {value:'', isValid:true});
     const [pinState, pinDispatch] = useReducer(pinReducer, {value:'', isValid:true});
 
-
+    const inp1 = useRef();
+    const inp2 = useRef();
+    const inp3 = useRef();
+    const inp4 = useRef();
+    const inp5 = useRef();
+    const inp6 = useRef();
+    const inp7 = useRef();
+    const inp8 = useRef();
+    
     const signUpToLoginHandeler = () => {
         props.setSignUp(false);     
     };
@@ -65,7 +75,7 @@ function Signup(props){
         passwordDispatch({type:'PASSWORD', val:event.target.value})
     };
     const FirstNameHandeler = (event) => {
-        fNameDispatch({type: "First_NAME", val: event.target.value })
+        fNameDispatch({type: "FIRST_NAME", val: event.target.value })
     };
     const lastNameHandeler = (e) => {
         lNameDispatch({type: "LAST_NAME", val: e.target.value})
@@ -113,10 +123,34 @@ function Signup(props){
         };
     };
 
+    const signUpHandeler = () => {
+        if(idState.isValid ===false){
+            inp1.current.focus();
+        }else if(passwordState.isValid ===false){
+            inp2.current.focus();
+        }else if(fNameState.isValid===false){
+            inp3.current.focus();
+        }else if(lNameState.isValid ===false){
+            inp4.current.focus()
+        }else if( cityState.isValid===false){
+            inp5.current.focus();
+        }else if(stateState.isValid===false){
+            inp6.current.focus();
+        }else if(countryState.isValid ===false){
+            inp7.current.focus()
+        }else if(pinState.isValid ===false){
+            inp8.current.focus()
+        };
 
 
-    const signHandeler = () => {
-        signUpFetch();
+        if(idState.isValid && idState.value !== '' && passwordState.value !== '' && passwordState.isValid && fNameState.value !== '' && fNameState.isValid && lNameState.value !=='' && lNameState.isValid && cityState.value !== '' && cityState.isValid && stateState.value !== '' && stateState.isValid && countryState.isValid && pinState.isValid ){
+            signUpFetch();
+            props.setSignUp(false);
+            // after submittion page changes to login
+            // console.log(idState)
+
+            return;
+        }return alert('something went wrong!!');
     };
 
     return(
@@ -125,7 +159,7 @@ function Signup(props){
                     <p>
                         Facebook
                     </p>
-                    <div className={classes.login_btn}>
+                    <div className={classes.login_btn}>     
                         <Button onClick={signUpToLoginHandeler} className={'btn btn-primary'}>
                             Login to existing Account
                         </Button>
@@ -142,31 +176,31 @@ function Signup(props){
 
 
                     <div className='col-sm-12'>
-                        <input onChange={UserIdHandeler} className={idState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='User id'></input>
+                        <input ref={inp1} onChange={UserIdHandeler} className={idState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='User id'></input>
                     </div>
                     <div className='col-sm-12'>
-                        <input onChange={passwordHandeler} className={passwordState.isValid ? 'form-control' :'form-control ' + classes.err} type='password' placeholder='password'></input>
+                        <input ref={inp2} onChange={passwordHandeler} className={passwordState.isValid ? 'form-control' :'form-control ' + classes.err} type='password' placeholder='password'></input>
                     </div>
                     <div className='col-sm-6'>
-                        <input onChange={FirstNameHandeler}  className={fNameState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='First name'></input>
+                        <input ref={inp3} onChange={FirstNameHandeler}  className={fNameState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='First name'></input>
                     </div>
                     <div className={'col-sm-5 ' + classes.fname}>
-                        <input onChange={lastNameHandeler} className={fNameState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='Last name'></input>
+                        <input ref={inp4} onChange={lastNameHandeler} className={fNameState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='Last name'></input>
                     </div>
                     <div className='col-sm-5'>
-                        <input onChange={cityHandeler} className={cityState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='city'></input>
+                        <input ref={inp5} onChange={cityHandeler} className={cityState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='city'></input>
                     </div>
                     <div className='col-sm-5'>
-                        <input onChange={stateHandeler} className={stateState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='state' ></input>
+                        <input ref={inp6} onChange={stateHandeler} className={stateState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='state' ></input>
                     </div>
                     <div className='col-sm-5'>
-                        <input onChange={countryHandeler} className={countryState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='country' ></input>
+                        <input ref={inp7} onChange={countryHandeler} className={countryState.isValid ? 'form-control' :'form-control ' + classes.err} type='text' placeholder='country' ></input>
                     </div>
                     <div className='col-sm-5'>
-                        <input onChange={pinCodeHandeler} className={pinState.isValid ? 'form-control' :'form-control ' + classes.err} type='number' placeholder='pin code' ></input>
+                        <input ref={inp8} onChange={pinCodeHandeler} className={pinState.isValid ? 'form-control' :'form-control ' + classes.err} type='number' placeholder='pin code' ></input>
                     </div>
                     <div className={'col-sm-12 ' + classes.button_si}>
-                        <Button onClick={signHandeler} className={'btn btn-success ' + classes.signup_btn}>Sign Up</Button>
+                        <Button onClick={signUpHandeler} className={'btn btn-success ' + classes.signup_btn}>Sign Up</Button>
                     </div>
                 </div>
             </div>
